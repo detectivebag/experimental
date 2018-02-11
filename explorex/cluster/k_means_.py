@@ -10,7 +10,6 @@ from itertools import accumulate
 import matplotlib.pyplot as plt
 from explorex.utils.basic import *
 from matplotlib import animation
-from sklearn.datasets.samples_generator import make_blobs
 
 
 def k_meanses(points, k):
@@ -57,7 +56,8 @@ def cluster_mean(points):
     return [s / num_points for s in sum_points]
 
 
-def run_kmeans_animation2(seed=0, k=5, data=None):
+def run_kmeans_animation(seed=0, k=5, data=None, output_filename=None):
+    output_filename = output_filename or 'kmeans2.gif'
     random.seed(seed)
     data = data or [(random.choice([0, 1, 2, 4, 5]) + random.random(),
                      random.normalvariate(0, 1)) for _ in range(500)]
@@ -82,15 +82,4 @@ def run_kmeans_animation2(seed=0, k=5, data=None):
 
     fig = plt.figure(figsize=(5, 4))
     anim = animation.FuncAnimation(fig, animation_frame, frames=len(meanses))
-    anim.save('kmeans2.gif', writer='imagemagick', fps=4)
-
-
-if __name__ == "__main__":
-    centers = [[1, 1], [-1, -1], [1, -1]]
-    X, labels_true = make_blobs(n_samples=750, centers=centers, cluster_std=0.4, random_state=0)
-
-    run_kmeans_animation2(k=3, data=X.tolist())
-
-    # below is another simple example
-    # meanses = [mean for mean in until_convergence(k_meanses(X.tolist(), 5))]
-    # print(meanses)
+    anim.save(output_filename, writer='imagemagick', fps=4)

@@ -5,8 +5,8 @@ from setuptools import setup
 
 def is_package(path):
     return (
-        os.path.isdir(path) and
-        os.path.isfile(os.path.join(path, '__init__.py'))
+            os.path.isdir(path) and
+            os.path.isfile(os.path.join(path, '__init__.py'))
     )
 
 
