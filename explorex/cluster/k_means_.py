@@ -8,7 +8,7 @@ from functools import partial
 from itertools import accumulate
 
 import matplotlib.pyplot as plt
-from explorex.utils.basic import *
+from explorex.utils.operator_util import *
 from matplotlib import animation
 
 
